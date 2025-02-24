@@ -10,7 +10,7 @@ SERVER="8.8.8.8"
 LOG_FILE="./network_monitor.log"
 
 # Email notification (optional)
-EMAIL="youremail@example.com"
+# EMAIL="youremail@example.com"
 
 # Ping interval (in seconds)
 PING_INTERVAL=20
@@ -24,16 +24,16 @@ FAILURE_COUNT=0
 # Function to ring bell
 ring_bell() {
     times_to_ring=$1
-    for n in $(seq 1 $times_to_ring);do
-	tput bel
-	sleep 0.1
+    for _n in $(seq 1 "$times_to_ring");do
+        tput bel
+        sleep 0.1
     done
 }
 
 # Function to send email notification
 send_email() {
     # echo "Subject: Network Connection Alert" | cat - $LOG_FILE | sendmail $EMAIL
-    echo "Network Connection Alert: Connection to ${SERVER} is unreachable for ${MAX_FAIURES} times." 
+    echo "Network Connection Alert: Connection to ${SERVER} is unreachable for ${MAX_FAILURES} times." 
     ring_bell 5
 }
 
